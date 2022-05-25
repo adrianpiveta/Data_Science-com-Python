@@ -1,4 +1,4 @@
-#Importados o componente pyplot com nome plt, ele pertence a biblioteca matplotlib
+# Importados o componente pyplot com nome plt, ele pertence a biblioteca matplotlib
 from collections import Counter
 
 from matplotlib import pyplot as plt
@@ -97,19 +97,21 @@ plt.title("Aumento enorme") #É verdade este título
 plt.show() # Mostra o bonitão
 """
 
-#Vamos ao grafico de linhas
+# Vamos ao grafico de linhas
 
-variancia = [1,2,4,8, 16, 32, 64, 128, 256]
+variancia = [1, 2, 4, 8, 16, 32, 64, 128, 256]
 
-contrario=[]
+contrario = []
 for x in variancia:
     contrario.append(x)
 
+print(contrario)
+
 erro = [x + y for x, y in zip(variancia, contrario)]
-xs =[i for i in enumerate(variancia)]
+xs = [i for i in enumerate(variancia)]
 
-#Pode-se chamar diversas vezes a plotagem para se ter diversas séries na mesma plotagem
+# Pode-se chamar diversas vezes a plotagem para se ter diversas séries na mesma plotagem
 
-plt.plot(xs, variancia, 'g-', label='variancia') #Cria linha verde, por isso g-
+plt.plot(xs, variancia, 'g-', label='variancia')  # Cria linha verde, por isso g-
 
 plt.show()
