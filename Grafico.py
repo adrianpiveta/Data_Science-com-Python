@@ -1,117 +1,79 @@
-# Importados o componente pyplot com nome plt, ele pertence a biblioteca matplotlib
+#Antes intalamos na venv com o pyhton -m pip install matplotlib
+from matplotlib import pyplot as plt
 from collections import Counter
 
-from matplotlib import pyplot as plt
-""""
-#Vetor de  dados anos
-anos = [1950, 1960, 1970, 1980, 1990, 2000, 2010]
 
-#vetor de dados relativos vetor PIB
-pib = [300.2, 543.3, 1075.9, 2862.5, 5979.6, 10289.7, 14958.3]
+"""
+Grafico de linha
+years = [2000, 2010, 2011, 2018, 2022, 2026]
+gdp = [300.2, 543.2, 1075.4, 2843, 564.0, 665.7]
 
-# crie um gráfico de linhas, anos no eixo x, gdp no eixo y
-plt.plot(anos, pib, color='green', marker='o', linestyle='solid')
 
-# adicione um título
-plt.title("PIB nominal")
-
-# adicione um rótulo ao eixo y
-plt.ylabel("Bilhões de US$")
-
-# label do eixo x
-plt.xlabel("Ano")
-
+plt.plot(years, gdp, color='red', marker='o', linestyle='solid')
+plt.title("PIB NOminal")
+plt.ylabel("Bilhoes de dolares")
 plt.show()
-
-
-#Criação de gráfico de barras
-
-#Dados que serão adicionados ao gráfico
-qtd_oscars=[4,2,0]
-filmes= ['madagascar', 'Os pinguins', 'o exorcista']
-
-#Plotagem do gráfico de barras, mostra a sequencia (range) de elementos legenda
-# e dados que serão adicionados, no caso de quantidade de oscars
-plt.bar(range(len(qtd_oscars)), qtd_oscars)
-
-#titulo do gráfico
-plt.title("Filmes clássicos e quantidade de oscars")
-
-plt.ylabel("Legenda para eixo y")
-
-#Opção de grid no gráfico
-plt.grid()
-
-# rotulagem dos filmes com nome dos filmes, centrados na barra
-plt.xticks(range(len(filmes)), filmes)
-
-plt.show()
-
-
-#Historiograma
-
-#Nesse caso serão plotadas notas,
-grades = [83, 99, 91, 87, 70, 0, 15, 82, 100, 67, 73, 77, 0]
-
-# Agrupe as notas por decil, mas coloque o 100 com o 90
-histogram = Counter(min(grade // 10 * 10, 90) for grade in grades)
-
-# Mova as barras para a direita em 5, faz o transporte do gráfico,
-plt.bar([x + 5 for x in histogram.keys()],
-    10, #Define largura da barra
-    histogram.values()) # Atribua a altura correta a cada barra
-
-#Define coordenadas minimas e maximas de eixo x (-1, 105) e y (0, 5)
-plt.axis([-5, 105, 0, 5]) # eixo x de -5 a 105,
-
-
-plt.xticks([10 * i for i in range(12)]) # Rotula o eixo x em 0, 10, ..., 100
-plt.xlabel("Notas")
-
-plt.ylabel("# Numero de estudantes")
-
-plt.title("Distribuição das notas das provas no primeiro ano")
-plt.show()
-
-
-mencoes = [500, 505]
-anos = [2009, 2010]
-
-# eixo x, y, largura barra
-plt.bar(anos, mencoes, 0.8)
-
-#Cria varetinhas que representam os anos
-plt.xticks(anos)
-
-#Etiqueta eixo y
-plt.ylabel("Quantidade de menções")
-
-#Sem essa opção, eixo x ficará somente 0,1
-plt.ticklabel_format(useOffset=False)
-
-#Define onde começa e termina os eixos x e y
-plt.axis([2009, 2010, 499, 510])
-
-plt.title("Aumento enorme") #É verdade este título
-
-plt.show() # Mostra o bonitão
 """
 
-# Vamos ao grafico de linhas
+"""
+Grafico de barras 
 
-variancia = [1, 2, 4, 8, 16, 32, 64, 128, 256]
+filmes = ['Iti a coisa', 'Madagascar', 'A era do gelo']
+numero_oscars = [3, 0, 9]
+plt.bar(range(len(filmes)), numero_oscars)
 
-contrario = []
-for x in variancia:
-    contrario.append(x)
-
-print(contrario)
-
-erro = [x + y for x, y in zip(variancia, contrario)]
-xs = [i for i in enumerate(variancia)]
-
-# Pode-se chamar diversas vezes a plotagem para se ter diversas séries na mesma plotagem
-
-plt.plot(xs, variancia, 'g-', label='variancia')  # Cria linha verde, por isso g-
-
+plt.title("Filmes favoritos")
+plt.ylabel("Numero de Oscars")
+plt.xticks(range(len(filmes)), filmes)
 plt.show()
+"""
+
+"""
+Cria distribuição das notas
+from collections import Counter
+#grades = [6,89, 58,44, 55, 66, 88, 5, 69, 10, 15 ,15, 13]
+grades = [11, 95, 91, 87, 70, 0, 15, 82, 10, 67, 73, 77, 0]
+#Agrupamento de notas por Decil, 100 é colocado com o 90
+histogram = Counter(min(grade // 10 * 10, 90) for grade in grades)
+plt.bar([x+5 for x in histogram.keys()], #Mova a barra para direita em 5
+histogram.values(), ##atribuicao de altura de cada barra
+10, #Atribuido valor 10 a cada barra
+edgecolor=(0,0,0)) #Cor preta na borda da barra
+plt.axis([-5, 105, 0, 5]) #Eixo x de -5 a 105, eixo y de 0 a 5
+plt.xticks([10 * i for i in range(11)]) #Rotula x de 10 em 10, de 0.. 100
+plt.xlabel("Decile")
+plt.ylabel("# of Students")
+plt.title("Distribuicao de notas do 1º exame")
+plt.show()
+"""
+
+"""
+# Adulteração no eixo Y
+mencoes = [500, 505]
+anos = [2021, 2022]
+plt.bar(anos, mencoes, 0.8)
+plt.xticks(anos)#grafico em barras dos anos
+plt.ylabel("#Numero de vezes que eu ouvi sobre ciencia de dados")
+plt.ticklabel_format(useOffset=False)
+plt.axis([2019, 2023, 499, 507]) #Eixo y plotado com o "zero" em 499
+plt.title("Veja este 'gigante' crescimento")
+plt.show()
+"""
+
+
+#Grafico de linhas
+variancia = [1, 2, 4, 8, 16, 32, 64, 128, 256]
+inverso = [256, 128, 64, 32, 16, 8, 4, 2, 1]
+erro_total = [x+y for x, y in zip(variancia, inverso)]
+xs = [i for i in enumerate(variancia)]
+#podemos plotar varias camadas com plt.plot
+plt.plot(xs, variancia, 'g-', label='variancia') #Linha verde solida
+plt.plot(xs, inverso, 'r-.', label='Inverso') #Linha vermelha de pontos tracejado
+plt.plot(xs, erro_total, 'b:', label='Erro total') # Linha pontilhada azul
+
+plt.legend(loc=9)#Legenda
+plt.xlabel("Complexidade de modelo")
+plt.xticks([])
+plt.title("A varianca")
+plt.show()
+
